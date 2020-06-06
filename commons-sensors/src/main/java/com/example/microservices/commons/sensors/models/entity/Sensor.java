@@ -14,9 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -27,12 +25,14 @@ public class Sensor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false, unique = true)
+	@Size(min = 17, max = 17, message = "MAC field must have 17 characteres, incluiding separator char.")
 	private String mac;
 	
+	@Column(nullable = false)
 	private String position;
 	
-	
-	private boolean estado;
+	private boolean estado = true;
 	
 	@Column(name = "created_at")
 	private Date createdAt;

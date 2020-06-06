@@ -9,5 +9,10 @@ import com.example.microservicie.app.users.models.repository.IUserRepository;
 @Service
 public class UserServiceImpl extends CommonServiceImpl<User, IUserRepository> implements IUserService {
 
+	@Override
+	public User findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+
 	
 }

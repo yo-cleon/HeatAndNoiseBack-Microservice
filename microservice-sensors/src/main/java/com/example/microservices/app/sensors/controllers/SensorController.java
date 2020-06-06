@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.microservices.app.sensors.service.ISensorService;
 import com.example.microservices.commons.controller.CommonController;
-import com.example.microservices.commons.sensors.models.entity.Measure;
 import com.example.microservices.commons.sensors.models.entity.Sensor;
 
 @RestController
 public class SensorController extends CommonController<Sensor, ISensorService>{
+	
+	@GetMapping("/filter-position/{term}")
+	public ResponseEntity<?> getSensorByPosition(@PathVariable String term) {
+		return ResponseEntity.ok(service.findBySensorPosition(term));
+	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editSensor(@RequestBody Sensor sensor, @PathVariable Long id) {
@@ -34,10 +38,7 @@ public class SensorController extends CommonController<Sensor, ISensorService>{
 		}
 	}
 	
-//	@GetMapping("/{id}")
-//	public ResponseEntity<?> getSensor(@PathVariable Long id) {
-//		return ResponseEntity.status(HttpStatus.FOUND).body(service.findById(id));
-//	}
+
 	
 
 }

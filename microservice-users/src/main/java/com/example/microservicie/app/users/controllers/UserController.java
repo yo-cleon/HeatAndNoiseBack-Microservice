@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,11 @@ import com.example.microservicie.app.users.services.IUserService;
 
 @RestController
 public class UserController extends CommonController<User, IUserService>{
+	
+	@GetMapping("/find-by-email/{email}")
+	public ResponseEntity<?> filterProjectsByEmail(@PathVariable String email){
+		return ResponseEntity.ok(service.findByEmail(email));
+	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editUser(@RequestBody User user, @PathVariable Long id) {

@@ -30,11 +30,12 @@ public class Project {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long projectId;
 	
-	@Column(name = "project_name", nullable = false)
+	@Column(name = "project_name", nullable = false, unique = true)
 	private String projectName;
 	
 	private String description;
 	
+	@Column(nullable = false)
 	private String location;
 	
 	@ManyToMany(fetch = FetchType.LAZY)

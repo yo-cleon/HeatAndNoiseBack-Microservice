@@ -8,5 +8,6 @@ import com.example.microservices.commons.services.ICommonService;
 public interface IProjectService extends ICommonService<Project>{
 
 	public List<Project> findByProjectName(String term);
-	
+
+	public List<Project> findByProjectLocation(String term);
 }

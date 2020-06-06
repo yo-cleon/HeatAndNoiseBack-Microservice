@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,6 +28,7 @@ public class Measure {
 //	@JsonIgnoreProperties(value= {"measures"})
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "sensor_id")
+	@NotEmpty
 	private Long sensor;
 
 	private Double noise;

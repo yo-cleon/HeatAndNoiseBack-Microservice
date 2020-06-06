@@ -11,5 +11,8 @@ public interface IProjectRepository extends CrudRepository<Project, Long> {
 	
 	@Query("select p from Project p where p.projectName like %?1%")
 	public List<Project> findByProjectName(String term);
+	
+	@Query("select p from Project p where p.location like %?1%")
+	public List<Project> findByProjectLocation(String term);
 
 }

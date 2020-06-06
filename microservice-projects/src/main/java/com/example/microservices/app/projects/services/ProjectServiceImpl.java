@@ -15,8 +15,13 @@ public class ProjectServiceImpl extends CommonServiceImpl<Project, IProjectRepos
 	@Override
 	@Transactional(readOnly = true)
 	public List<Project> findByProjectName(String term) {
-		
 		return repository.findByProjectName(term);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Project> findByProjectLocation(String term) {
+		return repository.findByProjectLocation(term);
 	}
 
 

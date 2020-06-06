@@ -1,7 +1,6 @@
 package com.example.microservices.commons.users.models.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -24,11 +24,14 @@ public class User {
 	private Long id;
 	
 	@Column(name = "first_name", nullable = false)
+	@NotEmpty
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
+	@NotEmpty
+	@Email(message = "You must entered a valid email")
 	private String email;
 	
 	@Column(name="created_at")

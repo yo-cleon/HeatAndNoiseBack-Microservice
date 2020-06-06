@@ -35,9 +35,14 @@ public class ProjectController extends CommonController<Project, IProjectService
 		}
 	}
 	
-	@GetMapping("/filter/{term}")
-	public ResponseEntity<?> filterProjects(@PathVariable String term){
+	@GetMapping("/filter-name/{term}")
+	public ResponseEntity<?> filterProjectsByName(@PathVariable String term){
 		return ResponseEntity.ok(service.findByProjectName(term));
+	}
+	
+	@GetMapping("/filter-location/{term}")
+	public ResponseEntity<?> filterProjectsByLocation(@PathVariable String term){
+		return ResponseEntity.ok(service.findByProjectLocation(term));
 	}
 	
 	@PutMapping("/{id}/add-user")
