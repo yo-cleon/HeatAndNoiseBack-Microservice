@@ -2,8 +2,11 @@ package com.example.microservicie.app.users.controllers;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +26,11 @@ public class UserController extends CommonController<User, IUserService>{
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> editUser(@RequestBody User user, @PathVariable Long id) {
+	public ResponseEntity<?> editUser(@Valid @RequestBody User user, BindingResult result, @PathVariable Long id) {
+		
+		if (result.hasErrors()) {
+			return this.validate(result);
+		}
 		
 		Optional<User> o = service.findById(id);
 		

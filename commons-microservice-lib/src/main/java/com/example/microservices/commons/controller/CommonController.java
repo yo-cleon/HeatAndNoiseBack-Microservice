@@ -1,10 +1,15 @@
 package com.example.microservices.commons.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.microservices.commons.services.ICommonService;
+
+import net.bytebuddy.implementation.bind.annotation.BindingPriority;
 
 
 public class CommonController<E, S extends ICommonService<E>> {
@@ -39,7 +46,11 @@ public class CommonController<E, S extends ICommonService<E>> {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> saveEntity(@RequestBody E entity){
+	public ResponseEntity<?> saveEntity(@Valid @RequestBody E entity, BindingResult result){
+		
+		if (result.hasErrors()) {
+			return this.validate(result);
+		}
 		
 		E newEntity = service.save(entity);
 		return ResponseEntity.status(HttpStatus.CREATED).body(newEntity);
@@ -52,6 +63,13 @@ public class CommonController<E, S extends ICommonService<E>> {
 		return ResponseEntity.noContent().build();
 	}
 		
+	protected ResponseEntity<?> validate(BindingResult result) {
+		Map<String, Object> errors = new HashMap<>();
+		result.getFieldErrors().forEach(err -> {
+			errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+		});
+		return ResponseEntity.badRequest().body(errors);
+	}
 	
 
 }

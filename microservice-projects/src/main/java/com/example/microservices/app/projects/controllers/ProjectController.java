@@ -2,8 +2,11 @@ package com.example.microservices.app.projects.controllers;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,7 +23,11 @@ import com.example.microservices.commons.users.models.entity.User;
 public class ProjectController extends CommonController<Project, IProjectService>{
 	
 	@PutMapping("/{projectId}")
-	public ResponseEntity<?> editProject(@RequestBody Project project, @PathVariable Long projectId) {
+	public ResponseEntity<?> editProject(@ Valid @RequestBody Project project, BindingResult result,  @PathVariable Long projectId) {
+		
+		if (result.hasErrors()) {
+			return this.validate(result);
+		}
 		
 		Optional<Project> p = service.findById(projectId);
 		
@@ -47,6 +54,7 @@ public class ProjectController extends CommonController<Project, IProjectService
 	
 	@PutMapping("/{id}/add-user")
 	public ResponseEntity<?> assignProjectToUser(@RequestBody User user, @PathVariable Long id){
+		
 		Optional<Project> p = this.service.findById(id);
 		
 		if (p.isEmpty()) {
@@ -59,6 +67,9 @@ public class ProjectController extends CommonController<Project, IProjectService
 	
 	@PutMapping("/{id}/remove-user")
 	public ResponseEntity<?> deleteProjectFromUser(@RequestBody User user, @PathVariable Long id){
+		
+		
+		
 		Optional<Project> p = this.service.findById(id);
 		
 		if (p.isEmpty()) {

@@ -2,8 +2,11 @@ package com.example.microservices.app.sensors.controllers;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +26,11 @@ public class SensorController extends CommonController<Sensor, ISensorService>{
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> editSensor(@RequestBody Sensor sensor, @PathVariable Long id) {
+	public ResponseEntity<?> editSensor(@Valid @RequestBody Sensor sensor, BindingResult result, @PathVariable Long id) {
+		
+		if (result.hasErrors()) {
+			return this.validate(result);
+		}
 		
 		Optional<Sensor> s = service.findById(id);
 		
