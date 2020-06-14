@@ -24,13 +24,13 @@ public class User {
 	private Long id;
 	
 	@Column(name = "first_name", nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "The first name's field can not be empty")
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
 	
 	@Column(nullable = false, unique = true)
-	@NotEmpty
+	@NotEmpty(message = "The email's field can not be empty")
 	@Email(message = "You must entered a valid email")
 	private String email;
 	

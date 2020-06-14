@@ -66,7 +66,7 @@ public class CommonController<E, S extends ICommonService<E>> {
 	protected ResponseEntity<?> validate(BindingResult result) {
 		Map<String, Object> errors = new HashMap<>();
 		result.getFieldErrors().forEach(err -> {
-			errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+			errors.put(err.getField(), err.getDefaultMessage());
 		});
 		return ResponseEntity.badRequest().body(errors);
 	}

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,14 +29,14 @@ public class Measure {
 //	@JsonIgnoreProperties(value= {"measures"})
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "sensor_id")
-	@NotEmpty
+	@NotNull(message = "The Sensor field can not be null")
 	private Long sensor;
 
-	private Double noise;
+	private int noise = 0;
 	
-	private Double temperature;
+	private Double temperature = 0.00;
 	
-	private Double humidity;
+	private Double humidity = 0.00;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date taken;
@@ -60,11 +61,11 @@ public class Measure {
 	public void setSensor(Long sensorId) {
 		this.sensor = sensorId;
 	}
-	public Double getNoise() {
+	public int getNoise() {
 		return noise;
 	}
 
-	public void setNoise(Double noise) {
+	public void setNoise(int noise) {
 		this.noise = noise;
 	}
 

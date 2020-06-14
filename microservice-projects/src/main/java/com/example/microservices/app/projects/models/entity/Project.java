@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import com.example.microservices.commons.sensors.models.entity.Sensor;
 import com.example.microservices.commons.users.models.entity.User;
@@ -31,17 +33,19 @@ public class Project {
 	private Long projectId;
 	
 	@Column(name = "project_name", nullable = false, unique = true)
+	@NotEmpty(message = "Project name's field can not be empty")
 	private String projectName;
 	
 	private String description;
 	
 	@Column(nullable = false)
+	@NotEmpty(message = "Location's field can not be empty")
 	private String location;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<User> users;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Sensor> sensors;
 	
 	@Column(name = "created_at")
