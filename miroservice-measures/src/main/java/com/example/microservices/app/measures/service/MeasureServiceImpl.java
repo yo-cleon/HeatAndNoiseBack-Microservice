@@ -14,7 +14,7 @@ public class MeasureServiceImpl extends CommonServiceImpl<Measure, IMeasureRepos
 	@Override
 	public List<Measure> findBySensorId(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.findBySensorId(id);
 	}
 
 }

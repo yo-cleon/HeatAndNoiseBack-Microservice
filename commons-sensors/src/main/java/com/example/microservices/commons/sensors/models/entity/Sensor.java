@@ -28,8 +28,8 @@ public class Sensor {
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
-	@Pattern(regexp = "/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\\\.[0-9a-fA-F]{4}\\\\.[0-9a-fA-F]{4})$/g", 
-			 message = "The MAC address must have the following pattern \"xx:xx:xx:xx:xx:xx\"")
+//	@Pattern(regexp = "/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\\\.[0-9a-fA-F]{4}\\\\.[0-9a-fA-F]{4})$/g", 
+//			 message = "The MAC address must have the following pattern \"xx:xx:xx:xx:xx:xx\"")
 	@Size(min = 17, max = 17, message = "MAC field must have 17 characteres, incluiding separator character")
 	private String mac;
 	

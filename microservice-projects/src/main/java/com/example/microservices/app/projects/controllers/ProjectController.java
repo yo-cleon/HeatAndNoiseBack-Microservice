@@ -68,8 +68,6 @@ public class ProjectController extends CommonController<Project, IProjectService
 	@PutMapping("/{id}/remove-user")
 	public ResponseEntity<?> deleteProjectFromUser(@RequestBody User user, @PathVariable Long id){
 		
-		
-		
 		Optional<Project> p = this.service.findById(id);
 		
 		if (p.isEmpty()) {

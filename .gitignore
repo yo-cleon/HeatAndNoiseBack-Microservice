@@ -3,6 +3,7 @@
 #Excluir ficheros de trabajo
 *.json
 *.txt
+*.sql
 
 ### STS ###
 .apt_generated
