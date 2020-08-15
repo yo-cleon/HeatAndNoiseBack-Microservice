@@ -22,8 +22,6 @@ import javax.validation.constraints.NotEmpty;
 import com.example.microservices.commons.sensors.models.entity.Sensor;
 import com.example.microservices.commons.users.models.entity.User;
 
-
-
 @Entity
 @Table(name = "projects")
 public class Project {

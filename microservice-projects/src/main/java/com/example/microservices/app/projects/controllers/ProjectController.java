@@ -23,7 +23,7 @@ import com.example.microservices.commons.users.models.entity.User;
 public class ProjectController extends CommonController<Project, IProjectService>{
 	
 	@PutMapping("/{projectId}")
-	public ResponseEntity<?> editProject(@ Valid @RequestBody Project project, BindingResult result,  @PathVariable Long projectId) {
+	public ResponseEntity<?> editProject(@Valid @RequestBody Project project, BindingResult result,  @PathVariable Long projectId) {
 		
 		if (result.hasErrors()) {
 			return this.validate(result);

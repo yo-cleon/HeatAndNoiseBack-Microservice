@@ -23,14 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.microservices.commons.controller.CommonController;
 import com.example.microservices.commons.users.models.entity.User;
 import com.example.microservicie.app.users.services.IUserService;
-import com.fasterxml.jackson.core.util.ByteArrayBuilder;
-import com.sun.imageio.plugins.jpeg.JPEG;
 
 @RestController
 public class UserController extends CommonController<User, IUserService>{
 	
 	@GetMapping("/find-by-email/{email}")
-	public ResponseEntity<?> filterProjectsByEmail(@PathVariable String email){
+	public ResponseEntity<?> filterUsersByEmail(@PathVariable String email){
 		return ResponseEntity.ok(service.findByEmail(email));
 	}
 	

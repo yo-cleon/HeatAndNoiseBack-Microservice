@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.microservices.commons.services.ICommonService;
 
-import net.bytebuddy.implementation.bind.annotation.BindingPriority;
-
 
 public class CommonController<E, S extends ICommonService<E>> {
 	
