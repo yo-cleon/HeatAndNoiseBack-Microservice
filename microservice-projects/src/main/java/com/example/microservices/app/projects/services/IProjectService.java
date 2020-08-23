@@ -10,4 +10,7 @@ public interface IProjectService extends ICommonService<Project>{
 	public List<Project> findByProjectName(String term);
 
 	public List<Project> findByProjectLocation(String term);
+	
+	public List<Project> findByUserId(Long id);
+	
 }

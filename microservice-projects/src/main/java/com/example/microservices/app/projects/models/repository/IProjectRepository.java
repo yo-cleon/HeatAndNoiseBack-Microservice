@@ -14,5 +14,8 @@ public interface IProjectRepository extends PagingAndSortingRepository<Project, 
 	
 	@Query("select p from Project p where p.location like %?1%")
 	public List<Project> findByProjectLocation(String term);
+	
+	@Query("select p from Project p join p.users u where u.id = ?1")
+	public List<Project> findByUserId(Long id);
 
 }

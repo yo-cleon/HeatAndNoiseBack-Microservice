@@ -24,5 +24,11 @@ public class ProjectServiceImpl extends CommonServiceImpl<Project, IProjectRepos
 		return repository.findByProjectLocation(term);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Project> findByUserId(Long id) {
+		return repository.findByUserId(id);
+	}
+
 
 }

@@ -52,6 +52,11 @@ public class ProjectController extends CommonController<Project, IProjectService
 		return ResponseEntity.ok(service.findByProjectLocation(term));
 	}
 	
+	@GetMapping("filter-by-user/{id}")
+	public ResponseEntity<?> filterProjectsByUser(@PathVariable Long id) {
+		return ResponseEntity.ok(service.findByUserId(id));
+	}
+	
 	@PutMapping("/{id}/add-user")
 	public ResponseEntity<?> assignProjectToUser(@RequestBody User user, @PathVariable Long id){
 		
