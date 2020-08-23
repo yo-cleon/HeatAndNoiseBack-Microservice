@@ -12,6 +12,7 @@ public class GatewayZuulApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayZuulApplication.class, args);
+		System.out.println("Zuul Gateway is running");
 	}
 
 }
